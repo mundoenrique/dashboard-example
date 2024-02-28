@@ -33,8 +33,6 @@ export type State = {
 
 export async function createInvoice(prevState: State, formData: FormData) {
   // Validate form using Zod
-  console.log(prevState);
-  console.log(formData);
   const validatedFields = CreateInvoice.safeParse({
     customerId: formData.get('customerId'),
     amount: formData.get('amount'),
@@ -107,7 +105,7 @@ export async function deleteInvoice(id: string) {
 
 export async function authenticate(prevState: string | undefined, formData: FormData) {
   try {
-    await signIn('Credentials', formData);
+    await signIn('credentials', formData);
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
